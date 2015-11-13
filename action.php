@@ -78,9 +78,10 @@ class action_plugin_latexit extends DokuWiki_Action_Plugin {
      * @param array $param event parameters
      */
     public function _purgeCache(Doku_Event &$event, $param) {
+        global $config_cascade;
         if ($event->data->mode == 'latexit') {
             //touching main config will make all cache invalid
-            touch(DOKU_INC . 'conf/local.php');
+            touch($config_cascade['main']['local'][0]);
         }
     }
 
